@@ -1,0 +1,31 @@
+{
+  "name": "next-level-a2",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Faysal611/next-level-A2#readme",
+  "bugs": {
+    "url": "https://github.com/Faysal611/next-level-A2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Faysal611/next-level-A2.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tsx ./src/server.ts"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "pg": "^8.16.3",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.1"
+  }
+}
