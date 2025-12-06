@@ -7,7 +7,9 @@ const createUser = async (payload: Record<string, unknown>) => {
     const { name, email, phone, password, role } = payload;
     const hash = bcrypt.hashSync(password as string, 10);
 
-    return await pool.query(`INSERT INTO users(name, email, password, phone, role) VALUES($1, $2, $3, $4, $5) RETURNING *`, [name, email, hash, phone, role])
+    const result = await pool.query(`INSERT INTO users(name, email, password, phone, role) VALUES($1, $2, $3, $4, $5) RETURNING *`, [name, email, hash, phone, role]);
+    result.rows[0].password = password;
+    return result;
 }
 
 const loginUser = async (email: string, password: string) => {
@@ -27,7 +29,7 @@ const loginUser = async (email: string, password: string) => {
         throw new Error("Password incorrect!")
     }
 
-    const token = jwt.sign({name: user.email, role: user.role}, config.jwt_secret as string);
+    const token = jwt.sign({name: user.email, role: user.role}, config.jwt_secret as string, {expiresIn: "7d"});
     return {user, token}
 }
 
