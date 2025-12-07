@@ -32,7 +32,7 @@ const getAllVehicles = async (req: Request, res: Response) => {
 }
 
 const getSignelVehicle = async (req: Request, res: Response) => {
-    const id = req.params.id;
+    const id = req.params.vehicleId;
 
     try {
         const result = await vehicleService.getSignelVehicle(id as string);
@@ -49,8 +49,8 @@ const getSignelVehicle = async (req: Request, res: Response) => {
 
 const updateVehicle = async (req: Request, res: Response) => {
     try {
-        console.log(req.body, req.params.id);
-        const result = await vehicleService.updateVehicle(req.body, req.params.id as string);
+
+        const result = await vehicleService.updateVehicle(req.body, req.params.vehicleId as string);
         res.status(200).json({
             success: true,
             message: "Vehicle updated successfully",
@@ -63,7 +63,7 @@ const updateVehicle = async (req: Request, res: Response) => {
 
 const deleteVehicle = async (req: Request, res: Response) => {
     try {
-        await vehicleService.deleteVehicle(req.params.id as string)
+        await vehicleService.deleteVehicle(req.params.vehicleId as string)
         res.status(200).json({
             success: true,
             message: "Vehicle deleted successfully"

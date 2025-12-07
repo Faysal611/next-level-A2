@@ -29,7 +29,7 @@ const loginUser = async (email: string, password: string) => {
         throw new Error("Password incorrect!")
     }
 
-    const token = jwt.sign({name: user.email, role: user.role}, config.jwt_secret as string, {expiresIn: "7d"});
+    const token = jwt.sign({email: user.email, role: user.role, id: user.id}, config.jwt_secret as string, {expiresIn: "7d"});
     return {user, token}
 }
 
